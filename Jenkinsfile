@@ -19,7 +19,7 @@ node{
       }  
    
       stage('Publish Docker Image'){
-         withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerPWD')]) {
+         withCredentials([string(credentialsId: 'dockerpwdvaishnavi', variable: 'dockerPWD')]) {
               sh "docker login -u vaishnaviprabhu -p ${dockerPWD}"
          }
         sh "docker push ${dockerImageName}"
@@ -31,7 +31,7 @@ node{
             def scriptRunner='sudo ./stopscript.sh'           
             def dockerRun= "sudo docker run -p 8082:8080 -d --name ${dockerContainerName} ${dockerImageName}" 
             withCredentials([string(credentialsId: 'deploymentserverpwd', variable: 'dpPWD')]) {
-                  sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no devops@34.229.191.73" 
+                  sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no devops@34.239.173.39" 
                   sh "sshpass -p ${dpPWD} scp -r stopscript.sh devops@34.229.191.73:/home/devops" 
                   sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no devops@34.229.191.73 ${changingPermission}"
                   sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no devops@34.229.191.73 ${scriptRunner}"
