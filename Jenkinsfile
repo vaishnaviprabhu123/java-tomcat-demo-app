@@ -1,7 +1,7 @@
 node{
-      def dockerImageName= 'rajnikhattarrsinha/javademoapp_$JOB_NAME:$BUILD_NUMBER'
+      def dockerImageName= 'vaishnaviprabhu/javademoapp_$JOB_NAME:$BUILD_NUMBER'
       stage('SCM Checkout'){
-         git 'https://github.com/LovesCloud/java-tomcat-demo-app/'
+         git 'https://github.com/vaishnaviprabhu123/java-tomcat-demo-app'
       }
       stage('Build'){
          // Get maven home path and build
